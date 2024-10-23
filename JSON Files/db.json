@@ -1,0 +1,271 @@
+{
+  "users": [
+    {
+      "firstName": "Garry",
+      "lastName": "Kasparov",
+      "fideRating": 2739,
+      "id": 1
+    },
+    {
+      "firstName": "Mikhail",
+      "lastName": "Tal",
+      "fideRating": 2765,
+      "id": 2
+    },
+    {
+      "firstName": "Bobby",
+      "lastName": "Fischer",
+      "fideRating": 2790,
+      "id": 3
+    },
+    {
+      "firstName": "Vishy",
+      "lastName": "Anand",
+      "fideRating": 2757,
+      "id": 4
+    },
+    {
+      "firstName": "Magnus",
+      "lastName": "Carlsen",
+      "fideRating": 2853,
+      "id": 5
+    },
+    {
+      "firstName": "Alexander",
+      "lastName": "Alekhine",
+      "fideRating": 2669,
+      "id": 6
+    },
+    {
+      "firstName": "Wilhelm",
+      "lastName": "Steinitz",
+      "fideRating": 2650,
+      "id": 7
+    },
+    {
+      "firstName": "Jose",
+      "lastName": "Capablanca",
+      "fideRating": 2700,
+      "id": 8
+    },
+    {
+      "firstName": "Emanuel",
+      "lastName": "Lasker",
+      "fideRating": 2750,
+      "id": 9
+    },
+    {
+      "firstName": "Anatoly",
+      "lastName": "Karpov",
+      "fideRating": 2800,
+      "id": 10
+    },
+    {
+      "firstName": "Max",
+      "lastName": "Euwe",
+      "fideRating": 2734,
+      "id": 11
+    },
+    {
+      "firstName": "Vladimir",
+      "lastName": "Kramnik",
+      "fideRating": 2760,
+      "id": 12
+    },
+    {
+      "firstName": "Veselin",
+      "lastName": "Topalov",
+      "fideRating": 2790,
+      "id": 13
+    },
+    {
+      "firstName": "Adolf",
+      "lastName": "Anderssen",
+      "fideRating": 2596,
+      "id": 14
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Morphy",
+      "fideRating": 2578,
+      "id": 15
+    },
+    {
+      "firstName": "Dibyendu",
+      "lastName": "Barua",
+      "fideRating": 2393,
+      "id": 16
+    },
+    {
+      "firstName": "Surya",
+      "lastName": "Ganguly",
+      "fideRating": 2635,
+      "id": 17
+    },
+    {
+      "firstName": "Parimarjan",
+      "lastName": "Negi",
+      "fideRating": 2639,
+      "id": 18
+    },
+    {
+      "firstName": "Vidit",
+      "lastName": "Gujrathi",
+      "fideRating": 2726,
+      "id": 19
+    },
+    {
+      "firstName": "Nihal",
+      "lastName": "Sarin",
+      "fideRating": 2620,
+      "id": 20
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Keres",
+      "fideRating": 2741,
+      "id": 21
+    },
+    {
+      "firstName": "Mikhail",
+      "lastName": "Chigorin",
+      "fideRating": 2834,
+      "id": 22
+    },
+    {
+      "firstName": "Miguel",
+      "lastName": "Najdorf",
+      "fideRating": 2753,
+      "id": 23
+    },
+    {
+      "firstName": "Siegbert",
+      "lastName": "Tarrasch",
+      "fideRating": 2676,
+      "id": 24
+    },
+    {
+      "firstName": "David",
+      "lastName": "Bronstein",
+      "fideRating": 2659,
+      "id": 25
+    }
+  ],
+  "uploadFile": [
+    {
+      "id": 1
+    }
+  ],
+  "students": [
+    {
+      "firstName": "Leesha",
+      "lastName": "Saha",
+      "mobileNo": 9876543210,
+      "id": 1,
+      "subjects": [
+        "History",
+        "Maths",
+        "Geography"
+      ]
+    },
+    {
+      "firstName": "Mandira",
+      "lastName": "Ghosh",
+      "mobileNo": 8765432109,
+      "id": 2,
+      "subjects": [
+        "Physics",
+        "Maths",
+        "Biology"
+      ]
+    },
+    {
+      "firstName": "Divyangana",
+      "lastName": "Sarkar",
+      "mobileNo": 7654321098,
+      "id": 3,
+      "subjects": [
+        "Chemistry",
+        "Biology",
+        "Maths"
+      ]
+    },
+    {
+      "firstName": "Rishi",
+      "lastName": "Poddar",
+      "mobileNo": 6543210987,
+      "id": 4,
+      "subjects": [
+        "Maths",
+        "Physics",
+        "Chemistry"
+      ]
+    },
+    {
+      "firstName": "Raunak",
+      "lastName": "Agarwal",
+      "mobileNo": 5432109876,
+      "id": 5,
+      "subjects": [
+        "Accounts",
+        "Finance",
+        "Maths"
+      ]
+    },
+    {
+      "firstName": "Kanika",
+      "lastName": "Verma",
+      "mobileNo": 4321098765,
+      "id": 6,
+      "subjects": [
+        "Accounts",
+        "Maths",
+        "Science"
+      ]
+    },
+    {
+      "firstName": "Ritika",
+      "lastName": "Poddar",
+      "mobileNo": 3210987654,
+      "id": 7,
+      "subjects": [
+        "History",
+        "Maths",
+        "Geography"
+      ]
+    },
+    {
+      "firstName": "Komal",
+      "lastName": "Aggarwal",
+      "mobileNo": 2109876543,
+      "id": 8,
+      "subjects": [
+        "Finance",
+        "Social Studies",
+        "Maths"
+      ]
+    },
+    {
+      "firstName": "Anuj",
+      "lastName": "Jain",
+      "mobileNo": 1098765432,
+      "id": 9,
+      "subjects": [
+        "English",
+        "Finance",
+        "Maths"
+      ]
+    },
+    {
+      "firstName": "Sweta",
+      "lastName": "Modi",
+      "mobileNo": 9765432180,
+      "id": 10,
+      "subjects": [
+        "Maths",
+        "Env Science",
+        "Accounts"
+      ]
+    }
+  ]
+}

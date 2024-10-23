@@ -1,0 +1,1400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.0 on win32)" generated="20200925 22:42:40.248" rpa="false">
+<suite id="s1" name="RobotAPIAutomation" source="E:\Softwares\My PC Apps\Robot Framework\Workspace\RobotAPIAutomation">
+<suite id="s1-s1" name="Tests" source="E:\Softwares\My PC Apps\Robot Framework\Workspace\RobotAPIAutomation\Tests">
+<suite id="s1-s1-s1" name="REST API" source="E:\Softwares\My PC Apps\Robot Framework\Workspace\RobotAPIAutomation\Tests\REST API">
+<suite id="s1-s1-s1-s1" name="DataDrivenTesting" source="E:\Softwares\My PC Apps\Robot Framework\Workspace\RobotAPIAutomation\Tests\REST API\DataDrivenTesting">
+<suite id="s1-s1-s1-s1-s1" name="CreateUser DDT" source="E:\Softwares\My PC Apps\Robot Framework\Workspace\RobotAPIAutomation\Tests\REST API\DataDrivenTesting\CreateUser_DDT.robot">
+<test id="s1-s1-s1-s1-s1-t1" name="Validate User Creation Using Paul and Keres and 2741">
+<kw name="Data Driven User Creation">
+<arguments>
+<arg>Paul</arg>
+<arg>Keres</arg>
+<arg>2741</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>${base_URI}</arg>
+</arguments>
+<msg timestamp="20200925 22:42:43.337" level="INFO">Creating Session using : alias=mySession, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200925 22:42:43.335" endtime="20200925 22:42:43.339"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:43.342" level="INFO">${fideRating} = 2741</msg>
+<status status="PASS" starttime="20200925 22:42:43.340" endtime="20200925 22:42:43.342"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>firstName=${firstName}</arg>
+<arg>lastName=${lastName}</arg>
+<arg>fideRating=${fideRating}</arg>
+</arguments>
+<assign>
+<var>${req_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:43.346" level="INFO">${req_body} = {'firstName': 'Paul', 'lastName': 'Keres', 'fideRating': 2741}</msg>
+<status status="PASS" starttime="20200925 22:42:43.343" endtime="20200925 22:42:43.347"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${req_header}</var>
+</assign>
+<msg timestamp="20200925 22:42:43.350" level="INFO">${req_header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200925 22:42:43.348" endtime="20200925 22:42:43.350"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>/users</arg>
+<arg>data=${req_body}</arg>
+<arg>headers=${req_header}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.379" level="INFO">POST Request : url=http://localhost:3000/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '62'} 
+ body={"firstName": "Paul", "lastName": "Keres", "fideRating": 2741} 
+ </msg>
+<msg timestamp="20200925 22:42:44.380" level="INFO">POST Response : url=http://localhost:3000/users 
+ status=201, reason=Created 
+ body={
+  "firstName": "Paul",
+  "lastName": "Keres",
+  "fideRating": 2741,
+  "id": 16
+} 
+ </msg>
+<msg timestamp="20200925 22:42:44.380" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200925 22:42:43.351" endtime="20200925 22:42:44.381"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.382" endtime="20200925 22:42:44.384"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.385" endtime="20200925 22:42:44.386"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.387" endtime="20200925 22:42:44.389"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<assign>
+<var>${res_status_code}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.392" level="INFO">${res_status_code} = 201</msg>
+<status status="PASS" starttime="20200925 22:42:44.390" endtime="20200925 22:42:44.393"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_status_code}</arg>
+<arg>201</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.394" endtime="20200925 22:42:44.395"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+</arguments>
+<assign>
+<var>${res_content_type}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.397" level="INFO">${res_content_type} = application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20200925 22:42:44.396" endtime="20200925 22:42:44.398"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_content_type}</arg>
+<arg>application/json; charset=utf-8</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.399" endtime="20200925 22:42:44.401"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${res_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.404" level="INFO">${res_body} = {
+  "firstName": "Paul",
+  "lastName": "Keres",
+  "fideRating": 2741,
+  "id": 16
+}</msg>
+<status status="PASS" starttime="20200925 22:42:44.402" endtime="20200925 22:42:44.404"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.407" level="INFO">${fideRating} = 2741</msg>
+<status status="PASS" starttime="20200925 22:42:44.405" endtime="20200925 22:42:44.408"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${firstName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.410" endtime="20200925 22:42:44.412"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${lastName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.413" endtime="20200925 22:42:44.415"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${fideRating}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.416" endtime="20200925 22:42:44.417"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.420" level="INFO">To JSON using : content={
+  "firstName": "Paul",
+  "lastName": "Keres",
+  "fideRating": 2741,
+  "id": 16
+} </msg>
+<msg timestamp="20200925 22:42:44.421" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200925 22:42:44.421" level="INFO">${json_object} = {'firstName': 'Paul', 'lastName': 'Keres', 'fideRating': 2741, 'id': 16}</msg>
+<status status="PASS" starttime="20200925 22:42:44.419" endtime="20200925 22:42:44.422"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.firstName</arg>
+</arguments>
+<assign>
+<var>${firstName}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.598" level="INFO">${firstName} = ['Paul']</msg>
+<status status="PASS" starttime="20200925 22:42:44.423" endtime="20200925 22:42:44.599"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${firstName[0]}</arg>
+<arg>${first_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.600" endtime="20200925 22:42:44.603"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.lastName</arg>
+</arguments>
+<assign>
+<var>${lastName}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.741" level="INFO">${lastName} = ['Keres']</msg>
+<status status="PASS" starttime="20200925 22:42:44.604" endtime="20200925 22:42:44.742"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${lastName[0]}</arg>
+<arg>${last_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.743" endtime="20200925 22:42:44.746"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.fideRating</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.883" level="INFO">${fideRating} = [2741]</msg>
+<status status="PASS" starttime="20200925 22:42:44.747" endtime="20200925 22:42:44.883"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${fideRating[0]}</arg>
+<arg>${fide_rating[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:44.884" endtime="20200925 22:42:44.886"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:43.332" endtime="20200925 22:42:44.887"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:43.329" endtime="20200925 22:42:44.889" critical="yes"></status>
+</test>
+<test id="s1-s1-s1-s1-s1-t2" name="Validate User Creation Using Mikhail and Chigorin and 2834">
+<kw name="Data Driven User Creation">
+<arguments>
+<arg>Mikhail</arg>
+<arg>Chigorin</arg>
+<arg>2834</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>${base_URI}</arg>
+</arguments>
+<msg timestamp="20200925 22:42:44.895" level="INFO">Creating Session using : alias=mySession, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200925 22:42:44.894" endtime="20200925 22:42:44.897"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.899" level="INFO">${fideRating} = 2834</msg>
+<status status="PASS" starttime="20200925 22:42:44.898" endtime="20200925 22:42:44.900"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>firstName=${firstName}</arg>
+<arg>lastName=${lastName}</arg>
+<arg>fideRating=${fideRating}</arg>
+</arguments>
+<assign>
+<var>${req_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.902" level="INFO">${req_body} = {'firstName': 'Mikhail', 'lastName': 'Chigorin', 'fideRating': 2834}</msg>
+<status status="PASS" starttime="20200925 22:42:44.900" endtime="20200925 22:42:44.903"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${req_header}</var>
+</assign>
+<msg timestamp="20200925 22:42:44.905" level="INFO">${req_header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200925 22:42:44.904" endtime="20200925 22:42:44.906"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>/users</arg>
+<arg>data=${req_body}</arg>
+<arg>headers=${req_header}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200925 22:42:45.925" level="INFO">POST Request : url=http://localhost:3000/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '68'} 
+ body={"firstName": "Mikhail", "lastName": "Chigorin", "fideRating": 2834} 
+ </msg>
+<msg timestamp="20200925 22:42:45.926" level="INFO">POST Response : url=http://localhost:3000/users 
+ status=201, reason=Created 
+ body={
+  "firstName": "Mikhail",
+  "lastName": "Chigorin",
+  "fideRating": 2834,
+  "id": 17
+} 
+ </msg>
+<msg timestamp="20200925 22:42:45.927" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200925 22:42:44.906" endtime="20200925 22:42:45.927"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.928" endtime="20200925 22:42:45.932"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.933" endtime="20200925 22:42:45.934"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.935" endtime="20200925 22:42:45.937"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<assign>
+<var>${res_status_code}</var>
+</assign>
+<msg timestamp="20200925 22:42:45.940" level="INFO">${res_status_code} = 201</msg>
+<status status="PASS" starttime="20200925 22:42:45.938" endtime="20200925 22:42:45.940"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_status_code}</arg>
+<arg>201</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.941" endtime="20200925 22:42:45.943"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+</arguments>
+<assign>
+<var>${res_content_type}</var>
+</assign>
+<msg timestamp="20200925 22:42:45.945" level="INFO">${res_content_type} = application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20200925 22:42:45.944" endtime="20200925 22:42:45.946"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_content_type}</arg>
+<arg>application/json; charset=utf-8</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.947" endtime="20200925 22:42:45.949"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${res_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:45.952" level="INFO">${res_body} = {
+  "firstName": "Mikhail",
+  "lastName": "Chigorin",
+  "fideRating": 2834,
+  "id": 17
+}</msg>
+<status status="PASS" starttime="20200925 22:42:45.950" endtime="20200925 22:42:45.952"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:45.955" level="INFO">${fideRating} = 2834</msg>
+<status status="PASS" starttime="20200925 22:42:45.953" endtime="20200925 22:42:45.955"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${firstName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.956" endtime="20200925 22:42:45.957"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${lastName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.958" endtime="20200925 22:42:45.960"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${fideRating}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:45.961" endtime="20200925 22:42:45.963"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20200925 22:42:45.965" level="INFO">To JSON using : content={
+  "firstName": "Mikhail",
+  "lastName": "Chigorin",
+  "fideRating": 2834,
+  "id": 17
+} </msg>
+<msg timestamp="20200925 22:42:45.966" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200925 22:42:45.967" level="INFO">${json_object} = {'firstName': 'Mikhail', 'lastName': 'Chigorin', 'fideRating': 2834, 'id': 17}</msg>
+<status status="PASS" starttime="20200925 22:42:45.964" endtime="20200925 22:42:45.967"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.firstName</arg>
+</arguments>
+<assign>
+<var>${firstName}</var>
+</assign>
+<msg timestamp="20200925 22:42:46.094" level="INFO">${firstName} = ['Mikhail']</msg>
+<status status="PASS" starttime="20200925 22:42:45.968" endtime="20200925 22:42:46.094"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${firstName[0]}</arg>
+<arg>${first_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:46.095" endtime="20200925 22:42:46.099"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.lastName</arg>
+</arguments>
+<assign>
+<var>${lastName}</var>
+</assign>
+<msg timestamp="20200925 22:42:46.223" level="INFO">${lastName} = ['Chigorin']</msg>
+<status status="PASS" starttime="20200925 22:42:46.100" endtime="20200925 22:42:46.224"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${lastName[0]}</arg>
+<arg>${last_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:46.225" endtime="20200925 22:42:46.227"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.fideRating</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:46.346" level="INFO">${fideRating} = [2834]</msg>
+<status status="PASS" starttime="20200925 22:42:46.228" endtime="20200925 22:42:46.347"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${fideRating[0]}</arg>
+<arg>${fide_rating[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:46.348" endtime="20200925 22:42:46.350"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:44.892" endtime="20200925 22:42:46.351"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:44.890" endtime="20200925 22:42:46.352" critical="yes"></status>
+</test>
+<test id="s1-s1-s1-s1-s1-t3" name="Validate User Creation Using Miguel and Najdorf and 2753">
+<kw name="Data Driven User Creation">
+<arguments>
+<arg>Miguel</arg>
+<arg>Najdorf</arg>
+<arg>2753</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>${base_URI}</arg>
+</arguments>
+<msg timestamp="20200925 22:42:46.359" level="INFO">Creating Session using : alias=mySession, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200925 22:42:46.358" endtime="20200925 22:42:46.360"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:46.363" level="INFO">${fideRating} = 2753</msg>
+<status status="PASS" starttime="20200925 22:42:46.361" endtime="20200925 22:42:46.364"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>firstName=${firstName}</arg>
+<arg>lastName=${lastName}</arg>
+<arg>fideRating=${fideRating}</arg>
+</arguments>
+<assign>
+<var>${req_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:46.367" level="INFO">${req_body} = {'firstName': 'Miguel', 'lastName': 'Najdorf', 'fideRating': 2753}</msg>
+<status status="PASS" starttime="20200925 22:42:46.365" endtime="20200925 22:42:46.368"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${req_header}</var>
+</assign>
+<msg timestamp="20200925 22:42:46.370" level="INFO">${req_header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200925 22:42:46.369" endtime="20200925 22:42:46.371"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>/users</arg>
+<arg>data=${req_body}</arg>
+<arg>headers=${req_header}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.388" level="INFO">POST Request : url=http://localhost:3000/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '66'} 
+ body={"firstName": "Miguel", "lastName": "Najdorf", "fideRating": 2753} 
+ </msg>
+<msg timestamp="20200925 22:42:47.390" level="INFO">POST Response : url=http://localhost:3000/users 
+ status=201, reason=Created 
+ body={
+  "firstName": "Miguel",
+  "lastName": "Najdorf",
+  "fideRating": 2753,
+  "id": 18
+} 
+ </msg>
+<msg timestamp="20200925 22:42:47.391" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200925 22:42:46.371" endtime="20200925 22:42:47.391"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.393" endtime="20200925 22:42:47.396"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.397" endtime="20200925 22:42:47.400"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.402" endtime="20200925 22:42:47.404"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<assign>
+<var>${res_status_code}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.408" level="INFO">${res_status_code} = 201</msg>
+<status status="PASS" starttime="20200925 22:42:47.406" endtime="20200925 22:42:47.408"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_status_code}</arg>
+<arg>201</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.410" endtime="20200925 22:42:47.411"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+</arguments>
+<assign>
+<var>${res_content_type}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.414" level="INFO">${res_content_type} = application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20200925 22:42:47.412" endtime="20200925 22:42:47.415"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_content_type}</arg>
+<arg>application/json; charset=utf-8</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.415" endtime="20200925 22:42:47.417"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${res_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.419" level="INFO">${res_body} = {
+  "firstName": "Miguel",
+  "lastName": "Najdorf",
+  "fideRating": 2753,
+  "id": 18
+}</msg>
+<status status="PASS" starttime="20200925 22:42:47.418" endtime="20200925 22:42:47.420"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.422" level="INFO">${fideRating} = 2753</msg>
+<status status="PASS" starttime="20200925 22:42:47.421" endtime="20200925 22:42:47.423"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${firstName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.423" endtime="20200925 22:42:47.425"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${lastName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.425" endtime="20200925 22:42:47.427"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${fideRating}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.428" endtime="20200925 22:42:47.429"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.431" level="INFO">To JSON using : content={
+  "firstName": "Miguel",
+  "lastName": "Najdorf",
+  "fideRating": 2753,
+  "id": 18
+} </msg>
+<msg timestamp="20200925 22:42:47.432" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200925 22:42:47.433" level="INFO">${json_object} = {'firstName': 'Miguel', 'lastName': 'Najdorf', 'fideRating': 2753, 'id': 18}</msg>
+<status status="PASS" starttime="20200925 22:42:47.430" endtime="20200925 22:42:47.433"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.firstName</arg>
+</arguments>
+<assign>
+<var>${firstName}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.588" level="INFO">${firstName} = ['Miguel']</msg>
+<status status="PASS" starttime="20200925 22:42:47.435" endtime="20200925 22:42:47.589"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${firstName[0]}</arg>
+<arg>${first_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.591" endtime="20200925 22:42:47.594"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.lastName</arg>
+</arguments>
+<assign>
+<var>${lastName}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.801" level="INFO">${lastName} = ['Najdorf']</msg>
+<status status="PASS" starttime="20200925 22:42:47.595" endtime="20200925 22:42:47.802"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${lastName[0]}</arg>
+<arg>${last_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.803" endtime="20200925 22:42:47.806"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.fideRating</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.938" level="INFO">${fideRating} = [2753]</msg>
+<status status="PASS" starttime="20200925 22:42:47.807" endtime="20200925 22:42:47.939"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${fideRating[0]}</arg>
+<arg>${fide_rating[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:47.940" endtime="20200925 22:42:47.942"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:46.356" endtime="20200925 22:42:47.943"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:46.353" endtime="20200925 22:42:47.944" critical="yes"></status>
+</test>
+<test id="s1-s1-s1-s1-s1-t4" name="Validate User Creation Using Siegbert and Tarrasch and 2676">
+<kw name="Data Driven User Creation">
+<arguments>
+<arg>Siegbert</arg>
+<arg>Tarrasch</arg>
+<arg>2676</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>${base_URI}</arg>
+</arguments>
+<msg timestamp="20200925 22:42:47.951" level="INFO">Creating Session using : alias=mySession, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200925 22:42:47.950" endtime="20200925 22:42:47.953"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.956" level="INFO">${fideRating} = 2676</msg>
+<status status="PASS" starttime="20200925 22:42:47.954" endtime="20200925 22:42:47.956"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>firstName=${firstName}</arg>
+<arg>lastName=${lastName}</arg>
+<arg>fideRating=${fideRating}</arg>
+</arguments>
+<assign>
+<var>${req_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.959" level="INFO">${req_body} = {'firstName': 'Siegbert', 'lastName': 'Tarrasch', 'fideRating': 2676}</msg>
+<status status="PASS" starttime="20200925 22:42:47.957" endtime="20200925 22:42:47.960"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${req_header}</var>
+</assign>
+<msg timestamp="20200925 22:42:47.962" level="INFO">${req_header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200925 22:42:47.961" endtime="20200925 22:42:47.963"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>/users</arg>
+<arg>data=${req_body}</arg>
+<arg>headers=${req_header}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200925 22:42:48.981" level="INFO">POST Request : url=http://localhost:3000/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '69'} 
+ body={"firstName": "Siegbert", "lastName": "Tarrasch", "fideRating": 2676} 
+ </msg>
+<msg timestamp="20200925 22:42:48.983" level="INFO">POST Response : url=http://localhost:3000/users 
+ status=201, reason=Created 
+ body={
+  "firstName": "Siegbert",
+  "lastName": "Tarrasch",
+  "fideRating": 2676,
+  "id": 19
+} 
+ </msg>
+<msg timestamp="20200925 22:42:48.984" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200925 22:42:47.963" endtime="20200925 22:42:48.984"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:48.986" endtime="20200925 22:42:48.988"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:48.989" endtime="20200925 22:42:48.990"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:48.991" endtime="20200925 22:42:48.993"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<assign>
+<var>${res_status_code}</var>
+</assign>
+<msg timestamp="20200925 22:42:48.995" level="INFO">${res_status_code} = 201</msg>
+<status status="PASS" starttime="20200925 22:42:48.994" endtime="20200925 22:42:48.996"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_status_code}</arg>
+<arg>201</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:48.998" endtime="20200925 22:42:49.000"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+</arguments>
+<assign>
+<var>${res_content_type}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.003" level="INFO">${res_content_type} = application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20200925 22:42:49.001" endtime="20200925 22:42:49.004"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_content_type}</arg>
+<arg>application/json; charset=utf-8</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:49.005" endtime="20200925 22:42:49.032"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${res_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.036" level="INFO">${res_body} = {
+  "firstName": "Siegbert",
+  "lastName": "Tarrasch",
+  "fideRating": 2676,
+  "id": 19
+}</msg>
+<status status="PASS" starttime="20200925 22:42:49.034" endtime="20200925 22:42:49.037"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.041" level="INFO">${fideRating} = 2676</msg>
+<status status="PASS" starttime="20200925 22:42:49.038" endtime="20200925 22:42:49.042"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${firstName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:49.043" endtime="20200925 22:42:49.046"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${lastName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:49.048" endtime="20200925 22:42:49.050"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${fideRating}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:49.052" endtime="20200925 22:42:49.054"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.057" level="INFO">To JSON using : content={
+  "firstName": "Siegbert",
+  "lastName": "Tarrasch",
+  "fideRating": 2676,
+  "id": 19
+} </msg>
+<msg timestamp="20200925 22:42:49.059" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200925 22:42:49.061" level="INFO">${json_object} = {'firstName': 'Siegbert', 'lastName': 'Tarrasch', 'fideRating': 2676, 'id': 19}</msg>
+<status status="PASS" starttime="20200925 22:42:49.055" endtime="20200925 22:42:49.061"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.firstName</arg>
+</arguments>
+<assign>
+<var>${firstName}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.204" level="INFO">${firstName} = ['Siegbert']</msg>
+<status status="PASS" starttime="20200925 22:42:49.063" endtime="20200925 22:42:49.205"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${firstName[0]}</arg>
+<arg>${first_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:49.206" endtime="20200925 22:42:49.208"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.lastName</arg>
+</arguments>
+<assign>
+<var>${lastName}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.337" level="INFO">${lastName} = ['Tarrasch']</msg>
+<status status="PASS" starttime="20200925 22:42:49.210" endtime="20200925 22:42:49.337"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${lastName[0]}</arg>
+<arg>${last_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:49.339" endtime="20200925 22:42:49.341"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.fideRating</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.477" level="INFO">${fideRating} = [2676]</msg>
+<status status="PASS" starttime="20200925 22:42:49.342" endtime="20200925 22:42:49.478"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${fideRating[0]}</arg>
+<arg>${fide_rating[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:49.479" endtime="20200925 22:42:49.482"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:47.948" endtime="20200925 22:42:49.484"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:47.946" endtime="20200925 22:42:49.485" critical="yes"></status>
+</test>
+<test id="s1-s1-s1-s1-s1-t5" name="Validate User Creation Using David and Bronstein and 2659">
+<kw name="Data Driven User Creation">
+<arguments>
+<arg>David</arg>
+<arg>Bronstein</arg>
+<arg>2659</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>${base_URI}</arg>
+</arguments>
+<msg timestamp="20200925 22:42:49.496" level="INFO">Creating Session using : alias=mySession, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200925 22:42:49.494" endtime="20200925 22:42:49.498"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.501" level="INFO">${fideRating} = 2659</msg>
+<status status="PASS" starttime="20200925 22:42:49.499" endtime="20200925 22:42:49.501"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>firstName=${firstName}</arg>
+<arg>lastName=${lastName}</arg>
+<arg>fideRating=${fideRating}</arg>
+</arguments>
+<assign>
+<var>${req_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.506" level="INFO">${req_body} = {'firstName': 'David', 'lastName': 'Bronstein', 'fideRating': 2659}</msg>
+<status status="PASS" starttime="20200925 22:42:49.502" endtime="20200925 22:42:49.507"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${req_header}</var>
+</assign>
+<msg timestamp="20200925 22:42:49.511" level="INFO">${req_header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200925 22:42:49.508" endtime="20200925 22:42:49.512"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mySession</arg>
+<arg>/users</arg>
+<arg>data=${req_body}</arg>
+<arg>headers=${req_header}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.537" level="INFO">POST Request : url=http://localhost:3000/users 
+ path_url=/users 
+ headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '67'} 
+ body={"firstName": "David", "lastName": "Bronstein", "fideRating": 2659} 
+ </msg>
+<msg timestamp="20200925 22:42:50.539" level="INFO">POST Response : url=http://localhost:3000/users 
+ status=201, reason=Created 
+ body={
+  "firstName": "David",
+  "lastName": "Bronstein",
+  "fideRating": 2659,
+  "id": 20
+} 
+ </msg>
+<msg timestamp="20200925 22:42:50.540" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200925 22:42:49.514" endtime="20200925 22:42:50.540"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.542" endtime="20200925 22:42:50.544"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.546" endtime="20200925 22:42:50.548"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.549" endtime="20200925 22:42:50.551"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<assign>
+<var>${res_status_code}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.554" level="INFO">${res_status_code} = 201</msg>
+<status status="PASS" starttime="20200925 22:42:50.552" endtime="20200925 22:42:50.554"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_status_code}</arg>
+<arg>201</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.555" endtime="20200925 22:42:50.557"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+</arguments>
+<assign>
+<var>${res_content_type}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.566" level="INFO">${res_content_type} = application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20200925 22:42:50.565" endtime="20200925 22:42:50.567"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${res_content_type}</arg>
+<arg>application/json; charset=utf-8</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.568" endtime="20200925 22:42:50.569"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${res_body}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.572" level="INFO">${res_body} = {
+  "firstName": "David",
+  "lastName": "Bronstein",
+  "fideRating": 2659,
+  "id": 20
+}</msg>
+<status status="PASS" starttime="20200925 22:42:50.570" endtime="20200925 22:42:50.572"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${fideRating}</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.574" level="INFO">${fideRating} = 2659</msg>
+<status status="PASS" starttime="20200925 22:42:50.573" endtime="20200925 22:42:50.575"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${firstName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.576" endtime="20200925 22:42:50.577"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${lastName}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.578" endtime="20200925 22:42:50.579"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${res_body}</arg>
+<arg>${fideRating}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.580" endtime="20200925 22:42:50.582"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.585" level="INFO">To JSON using : content={
+  "firstName": "David",
+  "lastName": "Bronstein",
+  "fideRating": 2659,
+  "id": 20
+} </msg>
+<msg timestamp="20200925 22:42:50.585" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200925 22:42:50.586" level="INFO">${json_object} = {'firstName': 'David', 'lastName': 'Bronstein', 'fideRating': 2659, 'id': 20}</msg>
+<status status="PASS" starttime="20200925 22:42:50.582" endtime="20200925 22:42:50.587"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.firstName</arg>
+</arguments>
+<assign>
+<var>${firstName}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.784" level="INFO">${firstName} = ['David']</msg>
+<status status="PASS" starttime="20200925 22:42:50.589" endtime="20200925 22:42:50.785"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${firstName[0]}</arg>
+<arg>${first_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.786" endtime="20200925 22:42:50.788"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.lastName</arg>
+</arguments>
+<assign>
+<var>${lastName}</var>
+</assign>
+<msg timestamp="20200925 22:42:50.905" level="INFO">${lastName} = ['Bronstein']</msg>
+<status status="PASS" starttime="20200925 22:42:50.788" endtime="20200925 22:42:50.906"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${lastName[0]}</arg>
+<arg>${last_name[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:50.907" endtime="20200925 22:42:50.909"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.fideRating</arg>
+</arguments>
+<assign>
+<var>${fideRating}</var>
+</assign>
+<msg timestamp="20200925 22:42:51.032" level="INFO">${fideRating} = [2659]</msg>
+<status status="PASS" starttime="20200925 22:42:50.910" endtime="20200925 22:42:51.033"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${fideRating[0]}</arg>
+<arg>${fide_rating[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200925 22:42:51.034" endtime="20200925 22:42:51.036"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:49.492" endtime="20200925 22:42:51.037"></status>
+</kw>
+<status status="PASS" starttime="20200925 22:42:49.488" endtime="20200925 22:42:51.038" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200925 22:42:40.482" endtime="20200925 22:42:51.042"></status>
+</suite>
+<status status="PASS" starttime="20200925 22:42:40.470" endtime="20200925 22:42:51.057"></status>
+</suite>
+<status status="PASS" starttime="20200925 22:42:40.461" endtime="20200925 22:42:51.072"></status>
+</suite>
+<status status="PASS" starttime="20200925 22:42:40.453" endtime="20200925 22:42:51.086"></status>
+</suite>
+<status status="PASS" starttime="20200925 22:42:40.358" endtime="20200925 22:42:51.100"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0">Critical Tests</stat>
+<stat pass="5" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="5" fail="0" id="s1" name="RobotAPIAutomation">RobotAPIAutomation</stat>
+<stat pass="5" fail="0" id="s1-s1" name="Tests">RobotAPIAutomation.Tests</stat>
+<stat pass="5" fail="0" id="s1-s1-s1" name="REST API">RobotAPIAutomation.Tests.REST API</stat>
+<stat pass="5" fail="0" id="s1-s1-s1-s1" name="DataDrivenTesting">RobotAPIAutomation.Tests.REST API.DataDrivenTesting</stat>
+<stat pass="5" fail="0" id="s1-s1-s1-s1-s1" name="CreateUser DDT">RobotAPIAutomation.Tests.REST API.DataDrivenTesting.CreateUser DDT</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
